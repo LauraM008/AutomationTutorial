@@ -134,8 +134,6 @@ public class PracticeFormTest extends SharedData {
 
         Assert.assertEquals(tableDescriptionList.get(3).getText(), "Mobile", "Mobile text is not diplayed right in the table");
         Assert.assertEquals(tableValueList.get(3).getText(), phoneValue, "Mobile text is not diplayed right in the table");
-
-
         //a se repeta pt restul campurilor: DoB, Subjects (!), Hobbies, Picture, Address, State and City
     }
 }
