@@ -16,6 +16,7 @@ import sharedData.SharedData;
 import java.time.Duration;
 
 public class AlertsTest extends SharedData {
+
     public WebDriver driver;
 
     @Test
@@ -56,5 +57,7 @@ public class AlertsTest extends SharedData {
         elementHelper.clickElement(alertPromptElement);
 
         alertHelper.fillAlert("Dumniezai");
+
+        driver.quit();
     }
 }
