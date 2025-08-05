@@ -35,5 +35,6 @@ public class FrameTest extends SharedData {
         driver.switchTo().parentFrame();
 
         driver.quit();
+
     }
 }
