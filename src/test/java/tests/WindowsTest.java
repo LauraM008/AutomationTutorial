@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WindowsTest extends SharedData {
-    public WebDriver driver;
 
     @Test
     public void testMethod() {

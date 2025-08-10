@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PracticeFormTest extends SharedData {
-    public WebDriver driver;
 
     @Test
     public void testMethod() {

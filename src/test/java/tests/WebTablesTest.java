@@ -12,7 +12,6 @@ import sharedData.SharedData;
 import java.util.List;
 
 public class WebTablesTest extends SharedData {
-    public WebDriver driver;
 
     @Test
     public void testMethod(){

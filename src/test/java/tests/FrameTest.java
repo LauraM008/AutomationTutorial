@@ -10,7 +10,6 @@ import sharedData.SharedData;
 import java.time.Duration;
 
 public class FrameTest extends SharedData {
-    public WebDriver driver;
 
     @Test
     public void testMethod() {

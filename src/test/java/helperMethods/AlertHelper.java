@@ -28,7 +28,7 @@ public class AlertHelper {
     public void dismissAlert(){
         waitAlert();
         Alert alert = driver.switchTo().alert();
-        alert.accept();
+        alert.dismiss();
     }
 
     public void fillAlert (String text){
