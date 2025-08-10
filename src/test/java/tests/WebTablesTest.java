@@ -1,11 +1,8 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
 
@@ -15,108 +12,104 @@ public class WebTablesTest extends SharedData {
 
     @Test
     public void testMethod(){
+
+        ElementHelper elementHelper = new ElementHelper(driver);
+
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        elementsMenu.click();
+        elementHelper.clickElement(elementsMenu);
 
         WebElement elementsWebMenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        elementsWebMenu.click();
+        elementHelper.clickElement(elementsWebMenu);
 
         List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
-        Assert.assertEquals(tableList.size(),tableSize, "Expected table size ("+tableSize + ") is not correct");
+        elementHelper.validateListSize(tableList, tableSize);
 
         //identificam un element
         WebElement addElement=driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementHelper.clickElement(addElement);
 
-        WebElement firstnameElement=driver.findElement(By.id("firstName"));
-        String firstnameValue="John";
-        firstnameElement.sendKeys(firstnameValue);
+        WebElement firstNameElement=driver.findElement(By.id("firstName"));
+        String firstNameValue="John";
+        elementHelper.fillElement(firstNameElement,firstNameValue);
 
-        WebElement lastnameElement=driver.findElement(By.id("lastName"));
-        String lastnameValue="Doe";
-        lastnameElement.sendKeys(lastnameValue);
+        WebElement lastNameElement=driver.findElement(By.id("lastName"));
+        String lastNameValue="Doe";
+        elementHelper.fillElement(lastNameElement,lastNameValue);
 
         WebElement emailElement=driver.findElement(By.id("userEmail"));
         String emailValue="johndoe@gmail.com";
-        emailElement.sendKeys(emailValue);
+        elementHelper.fillElement(emailElement,emailValue);
 
         WebElement ageElement=driver.findElement(By.id("age"));
         String ageValue="27";
-        ageElement.sendKeys(ageValue);
+        elementHelper.fillElement(ageElement,ageValue);
 
         WebElement salaryElement=driver.findElement(By.id("salary"));
         String salaryValue="8000";
-        salaryElement.sendKeys(salaryValue);
+        elementHelper.fillElement(salaryElement,salaryValue);
 
         WebElement departmentElement=driver.findElement(By.id("department"));
         String departmentValue="Quality";
-        departmentElement.sendKeys(departmentValue);
+        elementHelper.fillElement(departmentElement,departmentValue);
 
         WebElement submitElement=driver.findElement(By.id("submit"));
-        submitElement.click();
+        elementHelper.clickElement(submitElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(),tableSize+1);
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(firstnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(lastnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(emailValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(ageValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(salaryValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(departmentValue));
+        elementHelper.validateListSize(tableList,tableSize+1);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), firstNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), lastNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), emailValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), ageValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), salaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), departmentValue);
 
         //edit functionality
         WebElement editElement=driver.findElement(By.id("edit-record-4"));
-        editElement.click();
+        elementHelper.clickElement(editElement);
 
-        WebElement editfirstnameElement=driver.findElement(By.id("firstName"));
-        String editfirstnameValue="Marcus";
-        editfirstnameElement.clear();
-        editfirstnameElement.sendKeys(editfirstnameValue);
+        WebElement editFirstNameElement=driver.findElement(By.id("firstName"));
+        String editFirstNameValue="Marcus";
+        elementHelper.clearFillElement(editFirstNameElement, editFirstNameValue);
 
-        WebElement editlastnameElement=driver.findElement(By.id("lastName"));
-        String editlastnameValue="Riga";
-        editlastnameElement.clear();
-        editlastnameElement.sendKeys(editlastnameValue);
+        WebElement editLastNameElement=driver.findElement(By.id("lastName"));
+        String editLastNameValue="Riga";
+        elementHelper.clearFillElement(editLastNameElement, editLastNameValue);
 
-        WebElement editemailElement=driver.findElement(By.id("userEmail"));
-        String editemailValue="marcus.riga@gmail.com";
-        editemailElement.clear();
-        editemailElement.sendKeys(editemailValue);
+        WebElement editEmailElement=driver.findElement(By.id("userEmail"));
+        String editEmailValue="marcus.riga@gmail.com";
+        elementHelper.clearFillElement(editEmailElement, editEmailValue);
 
-        WebElement editageElement=driver.findElement(By.id("age"));
-        String editageValue="69";
-        editageElement.clear();
-        editageElement.sendKeys(editageValue);
+        WebElement editAgeElement=driver.findElement(By.id("age"));
+        String editAgeValue="68";
+        elementHelper.clearFillElement(editAgeElement, editAgeValue);
 
-        WebElement editsalaryElement=driver.findElement(By.id("salary"));
-        String editsalaryValue="9999";
-        editsalaryElement.clear();
-        editsalaryElement.sendKeys(editsalaryValue);
+        WebElement editSalaryElement=driver.findElement(By.id("salary"));
+        String editSalaryValue="9999";
+        elementHelper.clearFillElement(editSalaryElement, editSalaryValue);
 
-        WebElement editdepartmentElement=driver.findElement(By.id("department"));
-        String editdepartmentValue="Music";
-        editdepartmentElement.clear();
-        editdepartmentElement.sendKeys(editdepartmentValue);
+        WebElement editDepartmentElement=driver.findElement(By.id("department"));
+        String editDepartmentValue="Music";
+        elementHelper.clearFillElement(editDepartmentElement, editDepartmentValue);
 
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        WebElement editlineElement = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", editlineElement);
+       WebElement editLine = driver.findElement(By.id("submit"));
+       elementHelper.clickElement(editLine);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(),tableSize+1);
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editfirstnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editlastnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editemailValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editageValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editsalaryValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editdepartmentValue));
+        elementHelper.validateListSize(tableList,tableSize+1);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editFirstNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editLastNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editEmailValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editAgeValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editSalaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editDepartmentValue);
 
         //delete element
         WebElement deleteElement=driver.findElement(By.id("delete-record-4"));
-        deleteElement.click();
+        elementHelper.clickElement(deleteElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(),tableSize);
+        elementHelper.validateListSize(tableList, tableSize);
     }
 }
